@@ -1,0 +1,17 @@
+#loginForm {
+    display: block;
+}
+
+#chatForm {
+    display: none;
+}
+
+.my-message {
+    text-align: right;
+    color: blue;
+}
+
+.other-message {
+    text-align: left;
+    color: green;
+}
