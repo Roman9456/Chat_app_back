@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+#chat {
+    border: 1px solid #ccc;
+    height: 400px;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+#messageInput {
+    width: calc(100% - 110px);
+}
+
+#sendButton {
+    width: 100px;
+}
