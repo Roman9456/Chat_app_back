@@ -6,41 +6,41 @@ branches:
   only:
     - main
 
-
 init:
   - echo "Performing initialization tasks..."
   - sudo apt-get update
   - sudo apt-get install -y curl
+
 
 build_script:
   - echo "Checking current directory..."
   - pwd
   - echo "Listing contents of the directory..."
   - ls -la
-  - echo "Setting up Node.js environment..."
-  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
-  - export NVM_DIR="$HOME/.nvm"
-  - source "$NVM_DIR/nvm.sh"
-  - nvm install 16
-  - nvm use 16
   - echo "Changing to client directory..."
-  - cd client
+  - cd client || exit 1
   - echo "Current directory:"
   - pwd
   - echo "Listing contents of the directory..."
   - ls -la
   - echo "Installing dependencies..."
   - npm install
+  - echo "Removing old dist directory..."
   - rm -rf dist/
   - echo "Building the project..."
   - npm run build
 
+
 deploy_script:
-  - cd client 
+  - cd client  
   - echo "Deploying to GitHub Pages..."
-  - cp -r dist/* .  
   - git config user.name "AppVeyor"  
   - git config user.email "ci@appveyor.com"  
   - git config credential.helper "store --file=$HOME/.git-credentials"  
   - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"  
-  - git push origin HEAD:gh-pages  
+  - git checkout gh-pages || git checkout --orphan gh-pages
+  - rm -rf *
+  - cp -r dist/* .
+  - git add .
+  - git commit -m "Deploy to GitHub Pages"
+  - git push origin gh-pages
