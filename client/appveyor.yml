@@ -1,5 +1,3 @@
-version: 1.0
-
 image: Ubuntu1804
 
 branches:
