@@ -1,3 +1,4 @@
+version: 1.0.$APPVEYOR_BUILD_ID
 image: Ubuntu1804
 
 branches:
