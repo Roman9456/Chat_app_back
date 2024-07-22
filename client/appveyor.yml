@@ -1,4 +1,3 @@
-version: 1.0.%APPVEYOR_REPO_COMMIT:short%
 image: Ubuntu1804
 
 branches:
