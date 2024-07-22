@@ -6,29 +6,24 @@ branches:
   only:
     - main
 
-build:
-  mode: script
 
 init:
-  - echo "Installing NVM..."
-  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-  - export NVM_DIR="$HOME/.nvm"
-  - source "$NVM_DIR/nvm.sh"
-  - echo "Installing Node.js..."
-  - nvm install 16
-  - nvm use 16
-
-install:
-  - echo "Installing dependencies..."
-  - cd client  
-  - npm install
-
-before_build:
-  - cd client  
-  - rm -rf dist/
+  - cd client 
+  - echo "Performing initialization tasks..."
+  - sudo apt-get update
+  - sudo apt-get install -y curl
 
 build_script:
-  - cd client  
+  - echo "Setting up Node.js environment..."
+  - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+  - export NVM_DIR="$HOME/.nvm"
+  - source "$NVM_DIR/nvm.sh"
+  - nvm install 16
+  - nvm use 16
+  - cd client 
+  - echo "Installing dependencies..."
+  - npm install
+  - rm -rf dist/
   - echo "Building the project..."
   - npm run build
 
@@ -39,4 +34,5 @@ deploy_script:
   - git config user.name "AppVeyor"  
   - git config user.email "ci@appveyor.com"  
   - git config credential.helper "store --file=$HOME/.git-credentials"  
-  - echo "https
+  - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"  
+  - git push origin HEAD:gh-pages  
