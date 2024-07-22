@@ -19,7 +19,7 @@ build_script:
   - source "$NVM_DIR/nvm.sh"
   - nvm install 16
   - nvm use 16
-  - cd client 
+  - cd client  
   - echo "Installing dependencies..."
   - npm install
   - rm -rf dist/
