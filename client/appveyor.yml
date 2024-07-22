@@ -13,13 +13,22 @@ init:
   - sudo apt-get install -y curl
 
 build_script:
+  - echo "Checking current directory..."
+  - pwd
+  - echo "Listing contents of the directory..."
+  - ls -la
   - echo "Setting up Node.js environment..."
   - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
   - export NVM_DIR="$HOME/.nvm"
   - source "$NVM_DIR/nvm.sh"
   - nvm install 16
   - nvm use 16
-  - cd client  
+  - echo "Changing to client directory..."
+  - cd client
+  - echo "Current directory:"
+  - pwd
+  - echo "Listing contents of the directory..."
+  - ls -la
   - echo "Installing dependencies..."
   - npm install
   - rm -rf dist/
@@ -27,7 +36,7 @@ build_script:
   - npm run build
 
 deploy_script:
-  - cd client  
+  - cd client 
   - echo "Deploying to GitHub Pages..."
   - cp -r dist/* .  
   - git config user.name "AppVeyor"  
