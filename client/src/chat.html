@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="chat"></div>
-    <input type="text" id="messageInput" placeholder="Type your message here...">
-    <button id="sendButton">Send</button>
+    <div id="chat-container">
+        <ul id="userList" class="user-list"></ul> 
+        <div id="chat" class="chat"></div>
+        <input id="messageInput" type="text" placeholder="Enter your message">
+        <button id="sendButton">Send</button>
+    </div>
     <script src="bundle.js"></script>
 </body>
 </html>

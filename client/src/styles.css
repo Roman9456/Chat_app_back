@@ -1,18 +1,38 @@
-body {
-    font-family: Arial, sans-serif;
+.user-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #f5f5f5;
+    border-right: 1px solid #ccc;
+    width: 200px;
+    height: 100vh;
+    overflow-y: auto;
+    float: left;
+}
+
+.user-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 #chat {
-    border: 1px solid #ccc;
-    height: 400px;
-    overflow-y: scroll;
-    padding: 10px;
+    margin-left: 210px;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
-#messageInput {
-    width: calc(100% - 110px);
+.own-message {
+    text-align: right;
+    background-color: #e0f7fa;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
 
-#sendButton {
-    width: 100px;
+.other-message {
+    text-align: left;
+    background-color: #f1f8e9;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
 }
