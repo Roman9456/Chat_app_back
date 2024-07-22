@@ -1,3 +1,5 @@
+version: 1.0
+
 image: Ubuntu1804
 
 branches:
@@ -15,18 +17,20 @@ init:
 
 install:
   - echo "Installing dependencies..."
+  - cd client  
   - npm install
 
 before_build:
-  - rm -rf dist/ 
+  - cd client  
+  - rm -rf dist/
 
 build_script:
+  - cd client  
   - echo "Building the project..."
   - npm run build
 
-
-
 deploy_script:
+  - cd client  
   - echo "Deploying to GitHub Pages..."
   - cp -r dist/* .  
   - git config user.name "AppVeyor"  
