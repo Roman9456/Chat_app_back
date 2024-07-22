@@ -6,6 +6,9 @@ branches:
   only:
     - main
 
+build:
+  mode: script
+
 init:
   - echo "Installing NVM..."
   - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
@@ -36,5 +39,4 @@ deploy_script:
   - git config user.name "AppVeyor"  
   - git config user.email "ci@appveyor.com"  
   - git config credential.helper "store --file=$HOME/.git-credentials"  
-  - echo "https://$GITHUB_TOKEN:x-oauth-basic@github.com" > "$HOME/.git-credentials"  
-  - git push origin HEAD:gh-pages  
+  - echo "https
